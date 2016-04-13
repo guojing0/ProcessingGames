@@ -1,4 +1,5 @@
-// Pong
+// Jing Guo
+// http://guoj.org
 
 class Pong {
 
@@ -43,20 +44,4 @@ class Pong {
     ellipse(ballLocation.x, ballLocation.y, ballSpec.x, ballSpec.y);
     rect(blockLocation.x, blockLocation.y, blockSpec.x, blockSpec.y);
   }
-}
-
-Pong pong;
-
-void setup() {
-  size(640, 400);
-  noStroke();
-  rectMode(RADIUS);
-  ellipseMode(RADIUS);
-  pong = new Pong();
-}
-
-void draw() {
-  background(255);
-  pong.update();
-  pong.display();
 }
