@@ -1,12 +1,12 @@
 // Jing Guo
 // http://guoj.org
 
-class Pong {
+class CreatePong {
 
   PVector blockSpec, blockLocation;
   PVector ballSpec, ballLocation, ballVelocity;
 
-  Pong() {
+  CreatePong() {
     blockSpec = new PVector(5, 50);
     blockLocation = new PVector(600, height/2);
     ballSpec = new PVector(10, 10);
@@ -34,9 +34,8 @@ class Pong {
       }
     }
   }
-  
+
   void checkCollision() {
-    
   }
 
   void display() {
@@ -44,4 +43,20 @@ class Pong {
     ellipse(ballLocation.x, ballLocation.y, ballSpec.x, ballSpec.y);
     rect(blockLocation.x, blockLocation.y, blockSpec.x, blockSpec.y);
   }
+}
+
+CreatePong pong;
+
+void setup() {
+  size(640, 400);
+  noStroke();
+  rectMode(RADIUS);
+  ellipseMode(RADIUS);
+  pong = new CreatePong();
+}
+
+void draw() {
+  background(255);
+  pong.update();
+  pong.display();
 }
