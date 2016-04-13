@@ -11,7 +11,7 @@ class CreatePong {
     blockLocation = new PVector(600, height/2);
     ballSpec = new PVector(10, 10);
     ballLocation = new PVector(width/2, height/2);
-    ballVelocity = new PVector(2, 3);
+    ballVelocity = new PVector(4, 5);
   }
 
   void update() {
@@ -36,6 +36,11 @@ class CreatePong {
   }
 
   void checkCollision() {
+    float distance = dist(ballLocation.x, ballLocation.y, blockLocation.x, blockLocation.y);
+    
+    if (distance < sqrt(blockSpec.x*blockSpec.x + blockSpec.y*blockSpec.y) && distance > blockSpec.x+ballSpec.x) {
+      ballVelocity.x *= -1;
+    }
   }
 
   void display() {
@@ -43,6 +48,7 @@ class CreatePong {
     ellipse(ballLocation.x, ballLocation.y, ballSpec.x, ballSpec.y);
     rect(blockLocation.x, blockLocation.y, blockSpec.x, blockSpec.y);
   }
+  
 }
 
 CreatePong pong;
@@ -58,5 +64,6 @@ void setup() {
 void draw() {
   background(255);
   pong.update();
+  pong.checkCollision();
   pong.display();
 }
