@@ -8,9 +8,11 @@ class CreatePong {
   PVector ballSpec, ballLocation, ballVelocity;
   
   float blockVelocity = 5;
+  int AIWin = 0;
+  int playerWin = 0;
 
   CreatePong() {
-    blockSpec = new PVector(5, 50);
+    blockSpec = new PVector(5, 40);
     blockLocation = new PVector(600, height/2);
     AILocation = new PVector(40, height/2);
     ballSpec = new PVector(10, 10);
@@ -26,6 +28,12 @@ class CreatePong {
       ballVelocity.x *= -1;
     } else if ((ballLocation.y+ballSpec.y > height) || (ballLocation.y-ballSpec.y < 0)) {
       ballVelocity.y *= -1;
+    }
+    
+    if (ballLocation.x+ballSpec.x > width) {
+      AIWin += 1;
+    } else if (ballLocation.x-ballSpec.x < 0) {
+      playerWin += 1;
     }
 
     // move block
@@ -66,6 +74,10 @@ class CreatePong {
     ellipse(ballLocation.x, ballLocation.y, ballSpec.x, ballSpec.y);
     rect(blockLocation.x, blockLocation.y, blockSpec.x, blockSpec.y);
     rect(AILocation.x, AILocation.y, blockSpec.x, blockSpec.y);
+    
+    textSize(25);
+    text(AIWin, width/3, height/2);
+    text(playerWin, width/3*2, height/2);
   }
   
 }
