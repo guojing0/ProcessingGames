@@ -4,11 +4,15 @@
 class CreatePong {
 
   PVector blockSpec, blockLocation;
+  PVector AILocation;
   PVector ballSpec, ballLocation, ballVelocity;
+  
+  float blockVelocity = 5;
 
   CreatePong() {
     blockSpec = new PVector(5, 50);
     blockLocation = new PVector(600, height/2);
+    AILocation = new PVector(40, height/2);
     ballSpec = new PVector(10, 10);
     ballLocation = new PVector(width/2, height/2);
     ballVelocity = new PVector(4, 5);
@@ -26,13 +30,17 @@ class CreatePong {
 
     // move block
     if (keyPressed) {
-      blockLocation.y = constrain(blockLocation.y, blockSpec.y, height-blockSpec.y); //???
+      blockLocation.y = constrain(blockLocation.y, blockSpec.y, height-blockSpec.y);
       if ((blockLocation.y > 0) && (key == 'w') || (key == 'W')) {
-        blockLocation.y -= 5;
+        blockLocation.y -= blockVelocity;
       } else if ((blockLocation.y < height) && (key == 's') || (key == 'S')) {
-        blockLocation.y += 5;
+        blockLocation.y += blockVelocity;
       }
     }
+    
+    // move AI
+    AILocation.y = ballLocation.y;
+    AILocation.y = constrain(AILocation.y, blockSpec.y, height-blockSpec.y);
   }
 
   void checkCollision() {
@@ -57,6 +65,7 @@ class CreatePong {
     fill(100);
     ellipse(ballLocation.x, ballLocation.y, ballSpec.x, ballSpec.y);
     rect(blockLocation.x, blockLocation.y, blockSpec.x, blockSpec.y);
+    rect(AILocation.x, AILocation.y, blockSpec.x, blockSpec.y);
   }
   
 }
