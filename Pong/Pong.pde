@@ -18,9 +18,9 @@ class CreatePong {
     // move ball
     ballLocation.add(ballVelocity);
 
-    if ((ballLocation.x > width) || (ballLocation.x < 0)) {
+    if ((ballLocation.x+ballSpec.x > width) || (ballLocation.x-ballSpec.x < 0)) {
       ballVelocity.x *= -1;
-    } else if ((ballLocation.y > height) || (ballLocation.y < 0)) {
+    } else if ((ballLocation.y+ballSpec.y > height) || (ballLocation.y-ballSpec.y < 0)) {
       ballVelocity.y *= -1;
     }
 
@@ -36,9 +36,19 @@ class CreatePong {
   }
 
   void checkCollision() {
-    float distance = dist(ballLocation.x, ballLocation.y, blockLocation.x, blockLocation.y);
+    PVector v = PVector.sub(blockLocation, ballLocation);
+    PVector h = blockSpec;
+    PVector u = PVector.sub(v, h);
     
-    if (distance < sqrt(blockSpec.x*blockSpec.x + blockSpec.y*blockSpec.y) && distance > blockSpec.x+ballSpec.x) {
+    if (u.x < 0) {
+      u.x = 0;
+    } else if (u.y < 0) {
+      u.y = 0;
+    } else if (u.x < 0 && u.y < 0) {
+      u.x = u.y = 0;
+    }
+    
+    if (u.mag() < ballSpec.x) {
       ballVelocity.x *= -1;
     }
   }
