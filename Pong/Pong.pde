@@ -26,10 +26,10 @@ class CreatePong {
 
     // move block
     if (keyPressed) {
-      float blockY = constrain(blockLocation.y, blockSpec.y, height-blockSpec.y); //???
-      if ((blockY > 0) && (key == 'w') || (key == 'W')) {
+      blockLocation.y = constrain(blockLocation.y, blockSpec.y, height-blockSpec.y); //???
+      if ((blockLocation.y > 0) && (key == 'w') || (key == 'W')) {
         blockLocation.y -= 5;
-      } else if ((blockY < height) && (key == 's') || (key == 'S')) {
+      } else if ((blockLocation.y < height) && (key == 's') || (key == 'S')) {
         blockLocation.y += 5;
       }
     }
