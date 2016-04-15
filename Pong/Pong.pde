@@ -11,12 +11,12 @@ class CreatePong {
   int AIWin = 0, playerWin = 0;
 
   CreatePong() {
-    blockSpec = new PVector(5, 40);
+    blockSpec = new PVector(5, 35);
     blockLocation = new PVector(600, height/2);
     AILocation = new PVector(40, height/2);
     ballSpec = new PVector(10, 10);
     ballLocation = new PVector(width/2, height/2);
-    ballVelocity = new PVector(4, 5);
+    ballVelocity = new PVector(5, 6);
   }
 
   void update() {
@@ -24,8 +24,12 @@ class CreatePong {
     ballLocation.add(ballVelocity);
 
     // move AI
-    AILocation.y = ballLocation.y;
     AILocation.y = constrain(AILocation.y, blockSpec.y, height-blockSpec.y);
+    if (AILocation.y > ballLocation.y) {
+      AILocation.y -= blockVelocity;
+    } else if (AILocation.y < ballLocation.y) {
+      AILocation.y += blockVelocity;
+    }
 
     // move block
     if (keyPressed) {
@@ -45,15 +49,17 @@ class CreatePong {
 
     if (ballLocation.x+ballSpec.x > width) {
       AIWin += 1;
-      ballLocation = new PVector(width/2, height/2);
+      ballLocation = new PVector(width/2, random(height));
+      ballVelocity.mult(-1);
     } else if (ballLocation.x-ballSpec.x < 0) {
       playerWin += 1;
-      ballLocation = new PVector(width/2, height/2);
+      ballLocation = new PVector(width/2, random(height));
+      ballVelocity.mult(-1);
     }
   }
 
   void checkCollision(PVector paddleLoc) {
-    PVector v = PVector.sub(paddleLoc, ballLocation);
+    PVector v = PVector.sub(ballLocation, paddleLoc);
     PVector abs_v = new PVector(abs(v.x), abs(v.y));
     PVector h = blockSpec;
     PVector u = PVector.sub(abs_v, h);
@@ -85,7 +91,6 @@ class CreatePong {
     fill(0);
     text("Created by Jing Guo", width-130, height-20);
   }
-  
 }
 
 CreatePong pong;
