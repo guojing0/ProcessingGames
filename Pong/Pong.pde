@@ -79,6 +79,10 @@ class CreatePong {
     textSize(25);
     text(AIWin, width/3, height/2);
     text(playerWin, width/3*2, height/2);
+    
+    textSize(12);
+    fill(0);
+    text("Created by Jing Guo", width-130, height-20);
   }
   
 }
