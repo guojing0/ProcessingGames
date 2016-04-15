@@ -52,11 +52,10 @@ class CreatePong {
   }
 
   void checkCollision() {
-    PVector absBlockLoc = new PVector(abs(blockLocation.x), abs(blockLocation.y));
-    PVector absBallLoc = new PVector(abs(ballLocation.x), abs(ballLocation.y));
-    PVector v = PVector.sub(absBlockLoc, absBallLoc);
+    PVector v = PVector.sub(blockLocation, ballLocation);
+    PVector abs_v = new PVector(abs(v.x), abs(v.y));
     PVector h = blockSpec;
-    PVector u = PVector.sub(v, h);
+    PVector u = PVector.sub(abs_v, h);
     
     if (u.x < 0) {
       u.x = 0;
