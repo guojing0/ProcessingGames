@@ -7,7 +7,7 @@ class CreatePong {
   PVector AILocation;
   PVector ballSpec, ballLocation, ballVelocity;
 
-  float blockSpeed = 5;
+  float blockSpeed = 6;
   int AIWin = 0, playerWin = 0;
 
   CreatePong() {
@@ -16,7 +16,7 @@ class CreatePong {
     AILocation = new PVector(40, height/2);
     ballSpec = new PVector(10, 10);
     ballLocation = new PVector(width/2, height/2);
-    ballVelocity = new PVector(5, 6);
+    ballVelocity = new PVector(5, 7);
   }
 
   void update() {
