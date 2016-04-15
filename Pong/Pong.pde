@@ -7,7 +7,7 @@ class CreatePong {
   PVector AILocation;
   PVector ballSpec, ballLocation, ballVelocity;
 
-  float blockVelocity = 5;
+  float blockSpeed = 5;
   int AIWin = 0, playerWin = 0;
 
   CreatePong() {
@@ -26,18 +26,18 @@ class CreatePong {
     // move AI
     AILocation.y = constrain(AILocation.y, blockSpec.y, height-blockSpec.y);
     if (AILocation.y > ballLocation.y) {
-      AILocation.y -= blockVelocity;
+      AILocation.y -= blockSpeed;
     } else if (AILocation.y < ballLocation.y) {
-      AILocation.y += blockVelocity;
+      AILocation.y += blockSpeed;
     }
 
     // move block
     if (keyPressed) {
       blockLocation.y = constrain(blockLocation.y, blockSpec.y, height-blockSpec.y);
       if ((blockLocation.y > 0) && (key == 'w') || (key == 'W')) {
-        blockLocation.y -= blockVelocity;
+        blockLocation.y -= blockSpeed;
       } else if ((blockLocation.y < height) && (key == 's') || (key == 'S')) {
-        blockLocation.y += blockVelocity;
+        blockLocation.y += blockSpeed;
       }
     }
   }
