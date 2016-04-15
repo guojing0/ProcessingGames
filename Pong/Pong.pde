@@ -51,8 +51,8 @@ class CreatePong {
     AILocation.y = constrain(AILocation.y, blockSpec.y, height-blockSpec.y);
   }
 
-  void checkCollision() {
-    PVector v = PVector.sub(blockLocation, ballLocation);
+  void checkCollision(PVector paddleLoc) {
+    PVector v = PVector.sub(paddleLoc, ballLocation);
     PVector abs_v = new PVector(abs(v.x), abs(v.y));
     PVector h = blockSpec;
     PVector u = PVector.sub(abs_v, h);
@@ -96,6 +96,7 @@ void setup() {
 void draw() {
   background(255);
   pong.update();
-  pong.checkCollision();
+  pong.checkCollision(pong.blockLocation);
+  pong.checkCollision(pong.AILocation);
   pong.display();
 }
