@@ -11,12 +11,12 @@ class CreatePong {
   int AIWin = 0, playerWin = 0;
 
   CreatePong() {
-    blockSpec = new PVector(5, 35);
+    blockSpec = new PVector(5, 30);
     blockLocation = new PVector(600, height/2);
     AILocation = new PVector(40, height/2);
     ballSpec = new PVector(10, 10);
     ballLocation = new PVector(width/2, height/2);
-    ballVelocity = new PVector(5, 7);
+    ballVelocity = new PVector(6, 7);
   }
 
   void update() {
