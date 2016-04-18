@@ -49,11 +49,11 @@ class CreatePong {
 
     if (ballLocation.x+ballSpec.x > width) {
       AIWin += 1;
-      ballLocation = new PVector(width/2, random(height));
+      ballLocation = new PVector(width/2, random(1.0/5*height, 3.0/5*height));
       ballVelocity.mult(-1);
     } else if (ballLocation.x-ballSpec.x < 0) {
       playerWin += 1;
-      ballLocation = new PVector(width/2, random(height));
+      ballLocation = new PVector(width/2, random(1.0/5*height, 3.0/5*height));
       ballVelocity.mult(-1);
     }
   }
@@ -91,23 +91,4 @@ class CreatePong {
     fill(0);
     text("Created by Jing Guo", width-130, height-20);
   }
-}
-
-CreatePong pong;
-
-void setup() {
-  size(640, 400);
-  noStroke();
-  rectMode(RADIUS);
-  ellipseMode(RADIUS);
-  pong = new CreatePong();
-}
-
-void draw() {
-  background(255);
-  pong.update();
-  pong.checkEdges();
-  pong.checkCollision(pong.blockLocation);
-  pong.checkCollision(pong.AILocation);
-  pong.display();
 }
