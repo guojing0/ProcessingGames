@@ -17,7 +17,6 @@ class CreateCar {
     velocity.add(acceleration);
     velocity.limit(topspeed);
     location.add(velocity);
-    acceleration.mult(0);
   }
 
   void display() {
@@ -36,13 +35,13 @@ class CreateCar {
   void keyPressed() {
     if (key == CODED) {
       if (keyCode == UP) {
-        acceleration.y -= 30;
+        acceleration.y -= 100;
       } else if (keyCode == DOWN) {
-        acceleration.y += 30;
+        acceleration.y += 100;
       } else if (keyCode == LEFT) {
-        acceleration.x -= 30;
+        acceleration.x -= 100;
       } else if (keyCode == RIGHT) {
-        acceleration.x += 30;
+        acceleration.x += 100;
       }
     }
   }
