@@ -17,6 +17,7 @@ class CreateCar {
     velocity.add(acceleration);
     velocity.limit(topspeed);
     location.add(velocity);
+    acceleration.mult(0);
   }
 
   void display() {
