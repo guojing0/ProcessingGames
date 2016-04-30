@@ -1,3 +1,6 @@
+// Jing Guo
+// http://guoj.org
+
 class CreateCar {
 
   PVector location;
