@@ -18,7 +18,7 @@ void draw() {
   sw.applyForce(force);
   sw.update();
   sw.checkEdges();
-  sw.isDeath(bh);
+  sw.isDead(bh);
   sw.display();
 
   bh.display();

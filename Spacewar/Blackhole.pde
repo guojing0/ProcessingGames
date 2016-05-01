@@ -11,7 +11,7 @@ class Blackhole {
   Blackhole() {
     location = new PVector(width/2, height/2);
     mass = 10;
-    g = 10;
+    g = 20;
     scaleWidth = 0.01 * width;
     scaleHeight = 0.01 * height;
   }

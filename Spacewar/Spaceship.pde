@@ -5,50 +5,41 @@ class Spaceship {
 
   PVector location, velocity, acceleration;
 
-  float topspeed, mass, angle;
+  float topspeed, mass, angle, s; // s is size
+  boolean thrusting;
 
   Spaceship(float m, float x, float y) {
     location = new PVector(x, y);
     velocity = new PVector(0, 0);
     acceleration = new PVector(0, 0);
-    topspeed = 5;
+    topspeed = 2;
     mass = m;
     angle = 0;
-  }
-
-  void update() {
-    velocity.add(acceleration);
-    location.add(velocity);
-
-    acceleration.mult(0);
-  }
-
-  void display() {
-    stroke(0);
-    strokeWeight(1);
-    fill(120);
-    pushMatrix();
-    translate(location.x, location.y);
-    rotate(angle);
-    rect(0, 0, mass, mass);
-    popMatrix();
+    s = 12;
+    thrusting = false;
   }
 
   void applyForce(PVector force) {
     PVector f = PVector.div(force, mass);
+    //f.div(mass);
     acceleration.add(f);
   }
 
   void thrust() {
-    
+    float ang = angle - PI/2;
+    PVector force = new PVector(cos(ang), sin(ang));
+    force.mult(0.1);
+    applyForce(force);
+
+    thrusting = true;
   }
-  
+
   void hyperspace() {
     delay(3000);
     location = new PVector(random(0, width), random(0, height));
   }
 
-  void isDeath(Blackhole bh) {
+  void isDead(Blackhole bh) {
     PVector v = PVector.sub(location, bh.location);
     PVector abs_v = new PVector(abs(v.x), abs(v.y));
     PVector h = new PVector(bh.scaleWidth, bh.scaleHeight);
@@ -94,5 +85,36 @@ class Spaceship {
         hyperspace();
       }
     }
+  }
+
+  void update() {
+    velocity.limit(topspeed);
+    velocity.add(acceleration);
+    location.add(velocity);
+
+    acceleration.mult(0);
+    println(velocity.mag()); // for test
+  }
+
+  void display() {
+    stroke(0);
+    strokeWeight(1);
+    pushMatrix();
+    translate(location.x, location.y);
+    rotate(angle);
+    fill(120);
+    
+    if (thrusting) {
+      line(0, 15, 0, 25);
+    }
+    // draw spaceship    
+    beginShape();
+    vertex(0, -s);
+    vertex(-s+2, s);
+    vertex(s-2, s);
+    endShape(CLOSE);
+    popMatrix();
+    
+    thrusting = false;
   }
 }
