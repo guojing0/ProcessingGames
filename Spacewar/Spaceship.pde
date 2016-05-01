@@ -63,6 +63,17 @@ class Spaceship {
     }
   }
 
+  void isCollided(Spaceship ss) {
+    PVector dist = PVector.sub(location, ss.location);
+
+    if (dist.mag() < s) {
+      velocity.mult(0);
+      ss.velocity.mult(0);
+      location = new PVector(random(0, width), random(0, height));
+      ss.location = new PVector(random(0, width), random(0, height));
+    }
+  }
+
   void checkEdges() {
     if (location.x > width) {
       location.x = 0;
@@ -106,7 +117,7 @@ class Spaceship {
     translate(location.x, location.y);
     rotate(angle);
     fill(r, g, b);
-    
+
     if (thrusting) {
       line(0, 15, 0, 25);
     }
@@ -117,7 +128,7 @@ class Spaceship {
     vertex(s-2, s);
     endShape(CLOSE);
     popMatrix();
-    
+
     thrusting = false;
   }
 }
