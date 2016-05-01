@@ -19,6 +19,7 @@ void draw() {
   sw.controlShip('a', 'd', 's', 'q');
   sw.applyForce(force);
   sw.update();
+  sw.isCollided(sw2); // only compute once
   sw.checkEdges();
   sw.isDead(bh);
   sw.display();
