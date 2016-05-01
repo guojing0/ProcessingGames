@@ -6,28 +6,36 @@ class Blackhole {
   PVector location;
 
   float mass, g;
+  float scaleWidth, scaleHeight;
 
   Blackhole() {
     location = new PVector(width/2, height/2);
-    mass = 1;
-    g = 0.5;
+    mass = 20;
+    g = 20;
+    scaleWidth = 0.01 * width;
+    scaleHeight = 0.01 * height;
   }
 
   PVector attract(Spaceship ss) {
     PVector force = PVector.sub(location, ss.location);
     float dist = force.mag();
+    //dist = constrain(dist, 20, 100);
     float str = (g * mass * ss.mass) / (dist * dist);
     force.normalize();
     force.mult(str);
     return force;
-  } 
+  }
 
   void display() {
-    float scaleWidth = 0.01 * width;
-    float scaleHeight = 0.01 * height;
-
     translate(location.x, location.y);
-    line(-scaleWidth, scaleHeight, scaleWidth, -scaleHeight);
+
+    rectMode(CENTER);
+    noStroke();
+    noFill();
+    rect(0, 0, scaleWidth*2, scaleHeight*2);
+
+    stroke(0);
     line(scaleWidth, scaleHeight, -scaleWidth, -scaleHeight);
+    line(-scaleWidth, scaleHeight, scaleWidth, -scaleHeight);
   }
 }
