@@ -1,11 +1,13 @@
 // Jing Guo
 // http://guoj.org
 
-CreateSpacewar sw;
+Spaceship sw;
+Blackhole bh;
 
 void setup() {
-  size(640, 640);
-  sw = new CreateSpacewar();
+  size(640, 640 );
+  sw = new Spaceship();
+  bh = new Blackhole();
 }
 
 void draw() {
@@ -14,4 +16,6 @@ void draw() {
   sw.keyPressed();
   sw.update();
   sw.display();
+  
+  bh.display();
 }

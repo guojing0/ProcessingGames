@@ -1,23 +1,24 @@
 // Jing Guo
 // http://guoj.org
 
-class CreateSpacewar {
+class Spaceship {
 
   PVector location, velocity, acceleration;
 
-  float topspeed;
+  float topspeed, mass;
 
-  CreateSpacewar() { // two players
+  Spaceship() { // two players
     location = new PVector(width/2, height/2);
     velocity = new PVector(0, 0);
     acceleration = new PVector(0, 0);
     topspeed = 5;
+    mass = 1;
   }
 
   void update() {
   }
 
-  void display() { // a blackhole in the center
+  void display() {
   }
 
   void thrust() {
