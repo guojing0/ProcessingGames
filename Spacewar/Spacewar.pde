@@ -12,10 +12,14 @@ void setup() {
 
 void draw() {
   background(255);
-  
+  PVector force = bh.attract(sw);
+
   sw.keyPressed();
+  sw.applyForce(force);
   sw.update();
+  sw.checkEdges();
+  sw.isDeath(bh);
   sw.display();
-  
+
   bh.display();
 }
