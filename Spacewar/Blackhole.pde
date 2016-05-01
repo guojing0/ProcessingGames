@@ -19,7 +19,6 @@ class Blackhole {
   PVector attract(Spaceship ss) {
     PVector force = PVector.sub(location, ss.location);
     float dist = force.mag();
-    //dist = constrain(dist, 10, 100);
     float str = (g * mass * ss.mass) / (dist * dist);
     force.normalize();
     force.mult(str);
