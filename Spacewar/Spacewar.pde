@@ -16,7 +16,7 @@ void draw() {
   PVector force = bh.attract(sw);
   PVector force2 = bh.attract(sw2);
 
-  sw.controlShip('a', 'd', 's', 'q');
+  sw.controlShip('a', 'd', 'w', 's', 'q');
   sw.applyForce(force);
   sw.update();
   sw.isCollided(sw2); // only compute once
@@ -24,7 +24,7 @@ void draw() {
   sw.isDead(bh);
   sw.display();
 
-  sw2.controlShip('j', 'l', 'k', 'p');
+  sw2.controlShip('j', 'l', 'i', 'k', 'p');
   sw2.applyForce(force2);
   sw2.update();
   sw2.checkEdges();

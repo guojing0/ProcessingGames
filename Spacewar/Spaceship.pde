@@ -28,6 +28,10 @@ class Spaceship {
     //f.div(mass);
     acceleration.add(f);
   }
+  
+  void shoot() {
+    //
+  }
 
   void thrust() {
     float ang = angle - PI/2;
@@ -88,12 +92,14 @@ class Spaceship {
     }
   }
 
-  void controlShip(char left, char right, char thr, char hs) { // shoot undefined
+  void controlShip(char left, char right, char sht, char thr, char hs) {
     if (keyPressed) {
       if (key == left) {
         angle -= 0.025;
       } else if (key == right) {
         angle += 0.025;
+      } else if (key == sht) {
+        shoot();
       } else if (key == thr) {
         thrust();
       } else if (key == hs) {
