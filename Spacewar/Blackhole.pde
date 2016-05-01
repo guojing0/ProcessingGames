@@ -10,8 +10,8 @@ class Blackhole {
 
   Blackhole() {
     location = new PVector(width/2, height/2);
-    mass = 20;
-    g = 20;
+    mass = 10;
+    g = 10;
     scaleWidth = 0.01 * width;
     scaleHeight = 0.01 * height;
   }
@@ -19,7 +19,7 @@ class Blackhole {
   PVector attract(Spaceship ss) {
     PVector force = PVector.sub(location, ss.location);
     float dist = force.mag();
-    //dist = constrain(dist, 20, 100);
+    //dist = constrain(dist, 10, 100);
     float str = (g * mass * ss.mass) / (dist * dist);
     force.normalize();
     force.mult(str);

@@ -5,14 +5,15 @@ class Spaceship {
 
   PVector location, velocity, acceleration;
 
-  float topspeed, mass;
+  float topspeed, mass, angle;
 
-  Spaceship() { // two players
-    location = new PVector(width/3, height/3);
-    velocity = new PVector(-1, -1); // test
+  Spaceship(float m, float x, float y) {
+    location = new PVector(x, y);
+    velocity = new PVector(0, 0);
     acceleration = new PVector(0, 0);
     topspeed = 5;
-    mass = 10;
+    mass = m;
+    angle = 0;
   }
 
   void update() {
@@ -28,7 +29,8 @@ class Spaceship {
     fill(120);
     pushMatrix();
     translate(location.x, location.y);
-    ellipse(0, 0, 20, 20);
+    rotate(angle);
+    rect(0, 0, mass, mass);
     popMatrix();
   }
 
@@ -38,6 +40,12 @@ class Spaceship {
   }
 
   void thrust() {
+    
+  }
+  
+  void hyperspace() {
+    delay(3000);
+    location = new PVector(random(0, width), random(0, height));
   }
 
   void isDeath(Blackhole bh) {
@@ -54,19 +62,19 @@ class Spaceship {
       u.x = u.y = 0;
     }
 
-    if (u.mag() < 10) { // half of the size of the ball
+    if (u.mag() < 10) { // 10 is half of the size of the ball
       velocity.mult(0);
-      location = new PVector(width/3, height/3);
+      location = new PVector(random(0, width), random(0, height));
     }
   }
-  
+
   void checkEdges() {
     if (location.x > width) {
       location.x = 0;
     } else if (location.x < 0) {
       location.x = width;
     }
-    
+
     if (location.y > height) {
       location.y = 0;
     } else if (location.y < 0) {
@@ -74,15 +82,17 @@ class Spaceship {
     }
   }
 
-  void keyPressed() {
-    if (key == CODED) {
-      if (keyCode == LEFT) {
-        //
-      } else if (keyCode == RIGHT) {
-        //
+  void controlShip(char left, char right, char thr, char hs) { // shoot undefined
+    if (keyPressed) {
+      if (key == left) {
+        angle -= 0.025;
+      } else if (key == right) {
+        angle += 0.025;
+      } else if (key == thr) {
+        thrust();
+      } else if (key == hs) {
+        hyperspace();
       }
-    } else if (key == 'z' || key == 'Z') {
-      thrust();
     }
   }
 }
