@@ -6,9 +6,10 @@ class Spaceship {
   PVector location, velocity, acceleration;
 
   float topspeed, mass, angle, s; // s is size
+  float r, g, b;
   boolean thrusting;
 
-  Spaceship(float m, float x, float y) {
+  Spaceship(float m, float x, float y, float r_, float g_, float b_) {
     location = new PVector(x, y);
     velocity = new PVector(0, 0);
     acceleration = new PVector(0, 0);
@@ -16,6 +17,9 @@ class Spaceship {
     mass = m;
     angle = 0;
     s = 12;
+    r = r_;
+    g = g_;
+    b = b_;
     thrusting = false;
   }
 
@@ -53,7 +57,7 @@ class Spaceship {
       u.x = u.y = 0;
     }
 
-    if (u.mag() < 10) { // 10 is half of the size of the ball
+    if (u.mag() < s/2) {
       velocity.mult(0);
       location = new PVector(random(0, width), random(0, height));
     }
@@ -93,16 +97,15 @@ class Spaceship {
     location.add(velocity);
 
     acceleration.mult(0);
-    println(velocity.mag()); // for test
   }
 
   void display() {
-    stroke(0);
+    stroke(255);
     strokeWeight(1);
     pushMatrix();
     translate(location.x, location.y);
     rotate(angle);
-    fill(120);
+    fill(r, g, b);
     
     if (thrusting) {
       line(0, 15, 0, 25);

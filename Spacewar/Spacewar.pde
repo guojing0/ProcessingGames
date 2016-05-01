@@ -5,14 +5,14 @@ Spaceship sw, sw2;
 Blackhole bh;
 
 void setup() {
-  size(640, 640 );
-  sw = new Spaceship(20, width*0.25, height*0.25);
-  sw2 = new Spaceship(20, width*0.75, height*0.75);
+  size(640, 640);
+  sw = new Spaceship(25, width*0.25, height*0.25, 255, 0, 0);
+  sw2 = new Spaceship(25, width*0.75, height*0.75, 0, 0, 255);
   bh = new Blackhole();
 }
 
 void draw() {
-  background(255);
+  background(0);
   PVector force = bh.attract(sw);
   PVector force2 = bh.attract(sw2);
 
