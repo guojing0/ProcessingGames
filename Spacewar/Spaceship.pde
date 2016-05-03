@@ -7,7 +7,7 @@ class Spaceship {
 
   float topspeed, mass, angle, s; // s is size
   float r, g, b;
-  boolean thrusting;
+  boolean thrusting, shooting;
 
   Spaceship(float m, float x, float y, float r_, float g_, float b_) {
     location = new PVector(x, y);
@@ -21,6 +21,7 @@ class Spaceship {
     g = g_;
     b = b_;
     thrusting = false;
+    shooting = false;
   }
 
   void applyForce(PVector force) {
@@ -28,9 +29,10 @@ class Spaceship {
     //f.div(mass);
     acceleration.add(f);
   }
-  
+
   void shoot() {
-    //
+
+    shooting = true;
   }
 
   void thrust() {
@@ -73,8 +75,8 @@ class Spaceship {
     if (dist.mag() < s) {
       velocity.mult(0);
       ss.velocity.mult(0);
-      location = new PVector(random(0, width), random(0, height));
-      ss.location = new PVector(random(0, width), random(0, height));
+      location = new PVector(width*0.25, height*0.25);
+      ss.location = new PVector(width*0.75, height*0.75);
     }
   }
 
@@ -127,6 +129,10 @@ class Spaceship {
     if (thrusting) {
       line(0, 15, 0, 25);
     }
+
+    if (shooting) {
+      ellipse(0, -15, 5, 5);
+    }
     // draw spaceship    
     beginShape();
     vertex(0, -s);
@@ -136,5 +142,26 @@ class Spaceship {
     popMatrix();
 
     thrusting = false;
+    shooting = false;
+  }
+}
+
+class Bullet {
+
+  PVector location, velocity;
+
+  Bullet() {
+    location = new PVector();
+    velocity = new PVector();
+  }
+
+  void update() {
+    location.add(velocity);
+  }
+
+  void display() {
+  }
+
+  void isCollideShip() {
   }
 }
